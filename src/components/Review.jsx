@@ -23,8 +23,8 @@ function Review({ onSubmit, restaurant_id }) {
           body: JSON.stringify({
             restaurant_id,
             review_text: reviewText,
-            review_date: new Date().toISOString().slice(0, 10), // 현재 날짜를 YYYY-MM-DD 형식으로 전송
-            user_id: 1, // 실제 애플리케이션에서는 사용자 인증을 통해 얻은 사용자 ID를 사용해야 합니다.
+            review_date: new Date().toISOString().slice(0, 10),
+            user_id: 1,
           }),
         }
       );
@@ -36,8 +36,8 @@ function Review({ onSubmit, restaurant_id }) {
       }
 
       const newReview = await response.json();
-      onSubmit(newReview.data); // 서버로부터 받은 새 리뷰 데이터를 부모 컴포넌트에 전달
-      setReviewText(""); // 입력 필드 초기화
+      onSubmit(newReview.data);
+      setReviewText("");
     } catch (error) {
       console.error("Error submitting review:", error.message);
       alert("리뷰 제출에 실패했습니다. 다시 시도해주세요.");
@@ -58,7 +58,7 @@ function Review({ onSubmit, restaurant_id }) {
           onChange={handleTextChange}
         />
       </label>
-      <button type="submit">리뷰 제출하기</button>
+      <Button type="submit">리뷰 제출하기</Button>
     </form>
   );
 }

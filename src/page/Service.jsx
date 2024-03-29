@@ -80,9 +80,9 @@ const Service = () => {
       <StyledRangeSlider onSave={(value) => handleSave("sour", value)} />
       <Circle className="bitter">쓴맛</Circle>
       <StyledRangeSlider onSave={(value) => handleSave("bitter", value)} />
-      <Btn className="search" onClick={handleSearch}>
+      <SearchBtn className="search" onClick={handleSearch}>
         검색
-      </Btn>
+      </SearchBtn>
       {isModalOpen && selectedRestaurant && (
         <Modal onClose={handleCloseModal}>
           <h1>{selectedRestaurant.restaurants_name}</h1>
@@ -134,7 +134,7 @@ const Container = styled.div`
   height: 100%;
   padding: 50px;
   margin-left: 30px;
-  background-color: #f2f2f2;
+  background-color: white;
   border-radius: 50px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -151,16 +151,21 @@ const StyledRangeSlider = styled(RangeSlider)`
 `;
 
 // Button 스타일 만들어주기
-const Btn = styled.button`
+const SearchBtn = styled.button`
   padding: 20px;
-  &.save {
-    background-color: green;
-    color: white;
+  background-color: #f7df1e; /* 배경색 변경 */
+  color: black;
+  border: none; /* 테두리 없애기 */
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffd700; /* hover 시 배경색 변경 */
+    color: white; /* hover 시 텍스트 색상 변경 */
   }
 
-  &.search {
-    background-color: gray;
-    color: white;
+  &:active {
+    transform: translateY(2px); /* 클릭 시 버튼 아래로 약간 이동 */
   }
 `;
 // Service 컴포넌트를 내보냄

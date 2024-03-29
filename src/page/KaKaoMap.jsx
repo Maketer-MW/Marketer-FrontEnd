@@ -22,11 +22,9 @@ const KakaoMap = () => {
     fetch("https://makterteste.fly.dev/api/v1/restaurants")
       .then((response) => response.json())
       .then((data) => {
-        // data가 배열이 아닌 객체이고, 실제 식당 데이터가 data.restaurants에 담겨있다고 가정
         if (data && Array.isArray(data.data)) {
           setRestaurants(data.data);
         } else {
-          // data가 배열이 아니라면 배열로 바꿔준다.
           if (data && !Array.isArray(data)) {
             setRestaurants([data]);
           } else {
@@ -39,11 +37,11 @@ const KakaoMap = () => {
   useEffect(() => {
     if (kakao) {
       kakao.maps.load(() => {
-        const mapContainer = document.getElementById("map"),
-          mapOption = {
-            center: new kakao.maps.LatLng(36.3273034, 127.4253552),
-            level: 8,
-          };
+        const mapContainer = document.getElementById("map");
+        const mapOption = {
+          center: new kakao.maps.LatLng(36.34, 127.4),
+          level: 8,
+        };
 
         const map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -67,7 +65,7 @@ const KakaoMap = () => {
   }, [kakao, restaurants]);
 
   return (
-    <div>
+    <Container>
       <MapContainer id="map" />
       {selectedRestaurant && (
         <StyledModal
@@ -77,20 +75,33 @@ const KakaoMap = () => {
           <FoodIndex restaurant={selectedRestaurant} />
         </StyledModal>
       )}
-    </div>
+    </Container>
   );
 };
 
 export default KakaoMap;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+`;
+
 const MapContainer = styled.div`
-  position: fixed;
-  top: 200px;
-  bottom: 0;
-  left: 1200px;
-  width: 60%;
-  height: 70%;
-  transform: translateX(-50%);
+  position: absolute;
+  top: 55%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 1300px;
+  height: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* 테두리 추가 */
+  border-radius: 10px; /* 테두리 둥글게 만듦 */
+  background-image: linear-gradient(
+    to bottom right,
+    #ffffff,
+    #f0f0f0
+  ); /* 그라데이션 효과 추가 */
 `;
 
 const StyledModal = styled(Modal)`
@@ -98,10 +109,9 @@ const StyledModal = styled(Modal)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
-  height: 50%;
+  width: 500px;
   background: white;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
