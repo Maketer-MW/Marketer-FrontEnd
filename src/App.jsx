@@ -14,66 +14,78 @@ import Login from "./page/Login";
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <Header />
-        <NavigationBar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="home" element={<HomeWithMap />} />
-          <Route path="search" element={<SearchWithMap />} />
-          <Route path="login" element={<LoginWithMap />} />
-          <Route path="rank" element={<RankWithMap />} />
-          <Route path="service" element={<ServiceWithMap />} />
-          <Route path="Joinmembership" element={<JoinmembershipWithMap />} />
-        </Routes>
-      </div>
+      <Routes>
+        {/* Main 페이지에는 Header와 NavigationBar를 제외한 컴포넌트를 렌더링 */}
+        <Route path="/" element={<MainHN />} />
+        {/* 나머지 페이지에는 Header와 NavigationBar를 포함하여 렌더링 */}
+        <Route path="/home" element={<HomeHN />} />
+        <Route path="/search" element={<SearchHN />} />
+        <Route path="/login" element={<LoginHN />} />
+        <Route path="/rank" element={<RankHN />} />
+        <Route path="/service" element={<ServiceHN />} />
+        <Route path="/Joinmembership" element={<JoinmembershipHN />} />
+      </Routes>
     </BrowserRouter>
   );
 }
 
-// 지도를 포함한 홈 화면 컴포넌트
-const HomeWithMap = () => (
+// Main 페이지에서는 Header와 NavigationBar를 제외한 컴포넌트를 렌더링
+const MainHN = () => (
   <div>
+    <Main />
+  </div>
+);
+
+// 나머지 페이지에서는 Header와 NavigationBar를 포함하여 컴포넌트를 렌더링
+const HomeHN = () => (
+  <div>
+    <Header />
+    <NavigationBar />
     <Home />
     <KakaoMap />
   </div>
 );
 
-// 지도를 포함한 검색 화면 컴포넌트
-const SearchWithMap = () => (
+const SearchHN = () => (
   <div>
+    <Header />
+    <NavigationBar />
     <Search />
     <KakaoMap />
   </div>
 );
 
-// 지도를 포함한 로그인 화면 컴포넌트
-const LoginWithMap = () => (
+const LoginHN = () => (
   <div>
+    <Header />
+    <NavigationBar />
     <Login />
     <KakaoMap />
   </div>
 );
 
-// 지도를 포함한 랭크 화면 컴포넌트
-const RankWithMap = () => (
+const RankHN = () => (
   <div>
+    <Header />
+    <NavigationBar />
     <Rank />
     <KakaoMap />
   </div>
 );
 
-// 지도를 포함한 서비스 화면 컴포넌트
-const ServiceWithMap = () => (
+const ServiceHN = () => (
   <div>
+    <Header />
+    <NavigationBar />
     <Service />
     <KakaoMap />
   </div>
 );
 
-// 지도를 포함한 회원가입 화면 컴포넌트
-const JoinmembershipWithMap = () => (
+const JoinmembershipHN = () => (
   <div>
+    <Header />
+    <NavigationBar />
     <Joinmembership />
     <KakaoMap />
   </div>
